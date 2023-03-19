@@ -91,7 +91,7 @@ namespace f7t {
                 m_logger->info("no suggestion");
                 return;
             }
-
+            erase_word(word.size());
             word = last_suggestion;
             std::cout << word;
         }

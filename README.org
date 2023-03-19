@@ -5,7 +5,7 @@
 * Introduction
     
     foresight (f7t) is a tool for predicting text input from a predefined list of words.
-    currently, it will look for the word list at `/usr/share/dict/words` and make a trie to store the words.
+    currently, it will look for the word list at 'file:/usr/share/dict/words' and make a trie to store the words.
 
 * Usage
 
@@ -29,7 +29,7 @@
 ** guide 
 
    - start typing when the prompt `>` appears.
-   - tab to autocomplete the word.
+   - ~tab~ to autocomplete the word.
    - ~ctrl~ + ~n~ to show the next suggestion
    - ~ctrl~ + ~p~ to show the previous suggestion
 
