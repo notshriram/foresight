@@ -2,7 +2,8 @@
 #include <iostream>
 #include <cstdlib>
 
-namespace termcolor {
+namespace termcolor
+{
     const std::string red = "\033[1;31m";
     const std::string green = "\033[1;32m";
     const std::string yellow = "\033[1;33m";
@@ -19,21 +20,26 @@ namespace termcolor {
     const std::string concealed = "\033[8m";
 }
 
-namespace f7t {
+namespace f7t
+{
 
-    void erase_till_eol() {
+    void erase_till_eol()
+    {
         std::cout << "\033[K";
     }
 
-    void erase_word(size_t word_size) {
-        for (size_t i = 0; i < word_size; i++) {
+    void erase_word(size_t word_size)
+    {
+        for (size_t i = 0; i < word_size; i++)
+        {
             std::cout << '\b';
         }
     }
 
-    void init_terminal() {
+    void init_terminal()
+    {
         /* static cast to discard these return values and fix warnings */
-        // Set terminal to raw mode 
+        // Set terminal to raw mode
         static_cast<void>(std::system("stty raw"));
         // disable echo
         static_cast<void>(std::system("stty -echo"));
@@ -41,26 +47,31 @@ namespace f7t {
         std::cout << "> ";
     }
 
-    App::App(const std::vector<std::string>& wordlist, std::shared_ptr<spdlog::logger> logger): m_logger(logger) {
-        for (auto& word : wordlist) {
+    App::App(const std::vector<std::string> &wordlist, std::shared_ptr<spdlog::logger> logger) : m_logger(logger)
+    {
+        for (auto &word : wordlist)
+        {
             m_trie.insert(word);
         }
         init_terminal();
     }
 
-    App::App(std::vector<std::string>&& wordlist, std::shared_ptr<spdlog::logger> logger): m_logger(logger) {
-        for (auto& word : wordlist) {
+    App::App(std::vector<std::string> &&wordlist, std::shared_ptr<spdlog::logger> logger) : m_logger(logger)
+    {
+        for (auto &word : wordlist)
+        {
             m_trie.insert(word);
         }
         init_terminal();
     }
 
-    [[nodiscard]]
-    bool App::shouldClose() const {
+    [[nodiscard]] bool App::shouldClose() const
+    {
         return m_shouldClose;
     }
 
-    void App::poll() {
+    void App::poll()
+    {
         char c;
         std::cin.get(c);
         static std::string word;
@@ -81,7 +92,7 @@ namespace f7t {
             std::cout << ' ';
             erase_till_eol();
         }
-        // tab pressed 
+        // tab pressed
         else if (c == 9)
         {
             if (last_suggestion.empty())
@@ -122,7 +133,8 @@ namespace f7t {
                 m_logger->info("ctrl-n pressed");
                 choice++;
             }
-            else {
+            else
+            {
                 // clear the word and reprint it
                 erase_word(word.size());
                 word += c;
@@ -131,16 +143,19 @@ namespace f7t {
 
             auto suggestions = m_trie.suggest(word);
             // print the remaining chars of the longest suggestion
-            if (!suggestions.empty()) {
+            if (!suggestions.empty())
+            {
                 m_logger->info("for " + word + " suggestions count: " + std::to_string(suggestions.size()));
                 last_suggestion = suggestions[choice % suggestions.size()];
                 // print the remaining chars (dimmed)
                 std::cout << termcolor::dim << last_suggestion.substr(word.size()) << termcolor::reset;
-                for (size_t i = 0; i < last_suggestion.size() - word.size(); i++) {
+                for (size_t i = 0; i < last_suggestion.size() - word.size(); i++)
+                {
                     std::cout << "\b";
                 }
             }
-            else {
+            else
+            {
                 m_logger->info("no suggestions after " + word);
                 last_suggestion = "";
                 erase_till_eol();
@@ -148,7 +163,8 @@ namespace f7t {
         }
     }
 
-    App::~App() {
+    App::~App()
+    {
         // reset terminal to cooked mode
         static_cast<void>(std::system("stty cooked"));
         // enable echo
