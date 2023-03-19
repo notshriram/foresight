@@ -22,9 +22,30 @@ namespace f7t
          * @param logger logger instance
          */
         App(const std::vector<std::string> &wordlist, std::shared_ptr<spdlog::logger> logger);
+
+        /**
+         * @brief Construct a new App object
+         *
+         * @param wordlist vector of words (vocab) - to be converted to a trie
+         * @param logger logger instance
+         */
         App(std::vector<std::string> &&wordlist, std::shared_ptr<spdlog::logger> logger);
+
+        /**
+         * @brief says if the app should be closed or not
+         * flagged as [nodiscard] so the returned value must be used
+         *
+         * @return a boolean value indicating whether the app should close or not
+         */
         [[nodiscard]] bool shouldClose() const;
+
+        /**
+         * @brief starts the application
+         *
+         */
         void poll();
+
+        /// @brief Destroy the app instance
         ~App();
     };
 }
