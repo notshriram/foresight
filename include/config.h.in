@@ -1,0 +1,4 @@
+// the configured options and settings for foresight
+#define F7T_VERSION_MAJOR @foresight_VERSION_MAJOR@
+#define F7T_VERSION_MINOR @foresight_VERSION_MINOR@
+#define F7T_VERSION @foresight_VERSION_MAJOR@.@foresight_VERSION_MINOR@

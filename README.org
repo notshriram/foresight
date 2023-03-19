@@ -1,0 +1,44 @@
+#+TITLE:     f7t: foresight, a predictive text tool
+#+AUTHOR:    Shriram R
+#+DATE:      2023-03-19
+
+* Introduction
+    
+    foresight (f7t) is a tool for predicting text input from a predefined list of words.
+    currently, it will look for the word list at `/usr/share/dict/words` and make a trie to store the words.
+
+* Usage
+
+    The tool is currently in development and is not ready for use.
+    However you can try it out by compiling the source code and running it.
+
+    #+BEGIN_EXAMPLE
+    $ git clone --recursive git@github.com:notshriram/foresight.git foresight
+    $ cd foresight
+    $ mkdir build && cd build
+    $ cmake ..
+    $ make
+    $ ./foresight
+    > 
+    #+END_EXAMPLE
+
+** Installation
+   
+   To do.
+
+** guide 
+
+   - start typing when the prompt `>` appears.
+   - tab to autocomplete the word.
+   - ~ctrl~ + ~n~ to show the next suggestion
+   - ~ctrl~ + ~p~ to show the previous suggestion
+
+* Dependencies
+
+  1. [[https://github.com/gabime/spdlog][spdlog]]: submodule, for logging
+  2. [[http://doxygen.nl/][doxygen]]: (optional) for generating documentation
+
+* Known issues
+
+  - arrow keys don't work as intended
+  - hard coded values cause issues (e.g. word list path, text colours)
