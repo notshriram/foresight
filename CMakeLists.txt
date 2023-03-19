@@ -23,7 +23,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror")
 
 add_subdirectory(external/spdlog)
 
-add_executable(${PROJECT_NAME} src/main.cpp src/trie.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/trie.cpp src/app.cpp)
 
 # include directories (must be after add_executable)
 target_include_directories(${PROJECT_NAME} PUBLIC
