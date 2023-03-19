@@ -19,13 +19,13 @@
 #include <app.hpp>
 #include <spdlog/sinks/basic_file_sink.h>
 
-/**
- * @brief read words from file
- *
- * @param filename file name that contains the words
- * @return vector of words from the file
- */
-std::vector<std::string> readWords(const std::string &filename)
+ /**
+  * @brief read words from file
+  *
+  * @param filename file name that contains the words
+  * @return vector of words from the file
+  */
+std::vector<std::string> readWords(const std::string& filename)
 {
     std::ifstream file(filename);
     std::vector<std::string> words;
@@ -54,7 +54,7 @@ std::shared_ptr<spdlog::logger> make_logger(spdlog::level::level_enum level) noe
         logger->set_level(level);
         return logger;
     }
-    catch (const spdlog::spdlog_ex &ex)
+    catch (const spdlog::spdlog_ex& ex)
     {
         std::cout << "Log init failed: " << ex.what() << std::endl;
         return nullptr;

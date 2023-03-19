@@ -5,7 +5,7 @@
 namespace f7t
 {
     /**
-     * @brief class for application
+     * @brief RAII class for application
      *
      */
     class App
@@ -21,7 +21,7 @@ namespace f7t
          * @param wordlist vector of words (vocab) - to be converted to a trie
          * @param logger logger instance
          */
-        App(const std::vector<std::string> &wordlist, std::shared_ptr<spdlog::logger> logger);
+        App(const std::vector<std::string>& wordlist, std::shared_ptr<spdlog::logger> logger);
 
         /**
          * @brief Construct a new App object
@@ -29,18 +29,17 @@ namespace f7t
          * @param wordlist vector of words (vocab) - to be converted to a trie
          * @param logger logger instance
          */
-        App(std::vector<std::string> &&wordlist, std::shared_ptr<spdlog::logger> logger);
+        App(std::vector<std::string>&& wordlist, std::shared_ptr<spdlog::logger> logger);
 
         /**
-         * @brief says if the app should be closed or not
-         * flagged as [nodiscard] so the returned value must be used
+         * @brief says if the app should close
          *
          * @return a boolean value indicating whether the app should close or not
          */
         [[nodiscard]] bool shouldClose() const;
 
         /**
-         * @brief starts the application
+         * @brief poll for input and process it
          *
          */
         void poll();

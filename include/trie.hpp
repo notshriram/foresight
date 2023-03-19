@@ -10,11 +10,11 @@
 #include <memory>
 #include <string>
 
-/**
- * @brief namespace for foresight,
- * contains a struct for trie node and a class for trie data structure
- *
- */
+ /**
+  * @brief namespace for foresight,
+  * contains a struct for trie node and a class for trie data structure
+  *
+  */
 namespace f7t
 {
     /**
@@ -30,9 +30,9 @@ namespace f7t
         /**
          * @brief Construct a new Trie Node object
          *
-         * @param c character
+         * @param c character to be stored in the node
          */
-        TrieNode(char c) : c(c), isWord(false) {}
+        TrieNode(char c): c(c), isWord(false) {}
     };
 
     /**
@@ -50,7 +50,7 @@ namespace f7t
          * @param word word to be inserted
          * @param i index of word
          */
-        void insert(std::shared_ptr<TrieNode> node, const std::string &word, size_t i);
+        void insert(std::shared_ptr<TrieNode> node, const std::string& word, size_t i);
 
         /**
          * @brief suggest words that start with word
@@ -59,21 +59,21 @@ namespace f7t
          * @param word partial word on which suggestions are to be made
          * @param suggestions vector of suggestions
          */
-        void suggest(std::shared_ptr<TrieNode> node, const std::string &word, std::vector<std::string> &suggestions);
+        void suggest(std::shared_ptr<TrieNode> node, const std::string& word, std::vector<std::string>& suggestions);
 
     public:
         /**
          * @brief Construct a new Trie object
          *
          */
-        Trie() : root(std::make_shared<TrieNode>(' ')) {}
+        Trie(): root(std::make_shared<TrieNode>(' ')) {}
 
         /**
          * @brief insert word into trie
          *
          * @param word word to be inserted
          */
-        void insert(const std::string &word);
+        void insert(const std::string& word);
 
         /**
          * @brief suggest words that start with word
@@ -81,6 +81,6 @@ namespace f7t
          * @param word partial word on which suggestions are to be made
          * @return vector of words that are suggestions for given word
          */
-        std::vector<std::string> suggest(const std::string &word);
+        std::vector<std::string> suggest(const std::string& word);
     };
 }
